@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/home.css">
+    <title> TEST </title>
+    <style>
+        ul{
+            border: 1px solid black;
+            padding: 5px;
+        }
+        a{
+          text-decoration: none;
+          padding: 2px;
+          margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <ul>
+                <a href="#">  HOME </a>
+                <a href="/user/dashboard">  DASHBOARD </a>
+                <%if(!user){%>
+                    <a href="/auth/google" style="float:right;"> SignUp with Google </a>
+                <%}else {%>
+                    <a href="/auth/logout" style="float:right;"> SignOut </a>
+                <%}%>
+
+            </ul>
+        </nav>
+    </header>
+    
+    <p style="margin: 4px; padding: 4px;"> 
+        I have not given styling yet because of sort of time. 
+        We have a dashboard in left top of navigation bar in which all the mobile data have been shown.
+        In top right corner we have sign in with google button if you are already sign in it will show logout option.
+    </p>
+    <p>
+        SET UP : after cloning the repository install all the modules by command npm i
+        Set all the keys in config/key.js 
+
+    </p>
+    
+    <p> I will deploy this soon.</p>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/home.css">
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+    <title> TEST </title>
+    <style>
+        ul{
+            border: 1px solid black;
+            padding: 5px;
+        }
+        a{
+          text-decoration: none;
+          padding: 2px;
+          margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <ul >
+                <a href="/">  HOME </a>
+                
+                <%if(!user){%>
+                    
+
+                    <a href="/auth/google" style="float:right;"> SignUp with Google </a>
+                <%}else {%>
+                    
+                    <a href="/addPhone" > Add a Phone </a>
+                    <a href="/auth/logout" style="float:right;"> SignOut </a>
+                <%}%>
+
+            </ul>
+        </nav>
+    </header>
+
+     
+    <form id="filter" action="/user/dashboard/filter" method="POST"></form>   
+    
+    <ul>
+        <input form="filter" id='phoneBrand' type='text' name="phoneBrand" />
+       <label for='phoneBrand'>  Brand </label>
+
+       <input form="filter" id='phoneSize' type='text' name="phoneSize" />
+       <label for='phoneSize'>  Size </label>
+
+       <input form="filter" id='phoneType' type='text' name="phoneType" />
+       <label for='phoneType'>  Type </label>
+
+       <input form="filter" id='phonePrice' type='text' name="phonePrice" />
+       <label for='phonePrice'>  Prices Upto </label>
+
+      <button type='submit' form="filter" class="learn-more">
+        <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">filter</span>
+      </button>
+    </ul>
+
+    <% phones.forEach((phone)=>{%>
+         <ul>
+        <%= phone.phoneBrand %>
+        <%= phone.phoneSize  %>
+        <%= phone.phoneType  %>
+        <%= phone.phonePrice %>
+        
+        <% if( user && phone.googleID == user.googleID) {%>
+
+            <form method="POST" action="/phone/delete" id="phonedeleteF">
+                <input type='hidden' name='_id' value= <%= phone._id %> >
+                <button for='#phonedeleteF' title="delete" type="submit" > 
+                 <i class='fa fa-trash'></i>
+                </button>
+            </form>
+        <%}%>
+
+         </ul>
+    <%})%>
+
+
+   <p> 
+     Now we are in dashboard . If you are not logged in then you can onle see the data.  
+   </p>
+   <p> After loggin in you are able to add your own data. You can also delete your data by clicking on delete button. No one can delete others data. </p>
+    
+   <p> We can filter the data by above filter part If you leave any input empty suppose brand so It will show all the mobile brands.    </p>
+
+</body>
+</html>

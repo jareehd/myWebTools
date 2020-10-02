@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/home.css">
+    <title> TEST </title>
+    <style>
+        ul{
+            border: 1px solid black;
+            padding: 5px;
+        }
+        a{
+          text-decoration: none;
+          padding: 2px;
+          margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <ul >
+                <a href="/">  HOME </a>
+                <a href="/user/dashboard">  DASHBOARD </a>
+                <%if(!user){%>
+                    
+                    <a href="/auth/google" style="float:right;"> SignUp with Google </a>
+                <%}else {%>
+                     
+                    <a href="/auth/logout" style="float:right;"> SignOut </a>
+                <%}%>
+
+            </ul>
+        </nav>
+    </header>
+
+    <form  action="/addPhone" method="POST" id="addForm">
+        
+        <input type='text' id="phoneBrand" name="phoneBrand" placeholder="phoneBrand" value='nokia' required='required'>
+        <label for='phoneBrand'>  Brand </label>
+        <input type='text' id="phoneSize"  name="phoneSize" placeholder="phoneSize" value='5' required='required' >
+        <label for='phoneSize'>  Size </label>
+        <input type='text' id="phoneType"  name="phoneType" placeholder="phoneType" value='4G' required='required'>
+        <label for='phoneType'>  Type </label>
+        <input type='text' id="phonePrice" name="phonePrice" placeholder="phonePrice" value='15000' required='required'>
+        <label for='phonePrice'>  Price </label>
+       <button id='Submit' type="submit" > SUBMIT </button>
+    </form>
+
+ <script>
+
+     document.getElementById('Submit').addEventListener('click',function(){
+        document.getElementById("addForm").submit();
+     });
+
+    //  document.getElementById('addForm').addEventListener('submit',function(){
+    //     if( document.getElementById('phoneBrand').value === "" || document.getElementById('phoneSize').value =='' || document.getElementById('phoneType').value === '' || document.getElementById('phonePrice').value =='' ){ event.preventDefault(); return false; }
+    //     else { return true; }
+    //  }); 
+     
+ </script>
+
+</body>
+</html>
